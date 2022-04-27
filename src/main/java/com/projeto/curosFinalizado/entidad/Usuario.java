@@ -1,11 +1,10 @@
 package com.projeto.curosFinalizado.entidad;
 
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
 import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Objects;
 
 
@@ -21,6 +20,10 @@ public class Usuario  implements Serializable {
     private String email;
     private String telefone;
     private String senha;
+
+
+    @OneToMany(mappedBy = "cliente")
+    private List<Pedido> pedidos = new ArrayList<>();
 
     public  Usuario (){
 
@@ -58,6 +61,10 @@ public class Usuario  implements Serializable {
         this.email = email;
     }
 
+    public List<Pedido> getPedidos() {
+        return pedidos;
+    }
+
     public String getTelefone() {
         return telefone;
     }
@@ -88,5 +95,8 @@ public class Usuario  implements Serializable {
     public int hashCode() {
         return Objects.hash(id, nome, email, telefone, senha);
     }
+
+
+
 }
 
