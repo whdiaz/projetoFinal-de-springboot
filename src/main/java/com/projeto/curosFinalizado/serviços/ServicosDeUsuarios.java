@@ -26,4 +26,9 @@ public class ServicosDeUsuarios {
        return repositorio.save(obj);
     }
 
+    public void apagar(Long id){
+        repositorio.deleteById(id);
+
+    }
+
 }

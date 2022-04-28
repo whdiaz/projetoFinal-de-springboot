@@ -40,4 +40,10 @@ public class UsuarioRecursos {
 
     }
 
+    @DeleteMapping(value = "/{id}")
+    public  ResponseEntity<Void> apagar(@PathVariable Long id){
+        servicos.apagar(id);
+        return ResponseEntity.noContent().build();
+    }
+
 }
