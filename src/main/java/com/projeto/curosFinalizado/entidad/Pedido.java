@@ -1,6 +1,7 @@
 package com.projeto.curosFinalizado.entidad;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
+import com.projeto.curosFinalizado.entidad.enums.StatusDePedido;
 
 import javax.persistence.*;
 import java.io.Serializable;
@@ -19,6 +20,8 @@ public class Pedido  implements Serializable{
             pattern =  "yyyy-MM-dd'T'HH:mm:ss'Z' ", timezone = "GMT")
     private Instant moment;
 
+    private Integer statusDePedido;
+
     @ManyToOne
     @JoinColumn(name = "cliente_id")
     private Usuario cliente;
@@ -27,9 +30,10 @@ public class Pedido  implements Serializable{
 
     }
 
-    public Pedido(Long id, Instant moment, Usuario cliente) {
+    public Pedido(Long id, Instant moment,StatusDePedido statusDePedido,  Usuario cliente) {
         this.id = id;
         this.moment = moment;
+        setStatusDePedido(statusDePedido);
         this.cliente = cliente;
     }
 
@@ -47,6 +51,16 @@ public class Pedido  implements Serializable{
 
     public void setMoment(Instant moment) {
         this.moment = moment;
+    }
+
+    public StatusDePedido getStatusDePedido() {
+        return StatusDePedido.valueOf( statusDePedido);
+    }
+
+    public void setStatusDePedido(StatusDePedido statusDePedido) {
+        if ( statusDePedido != null) {
+            this.statusDePedido = statusDePedido.getCodigo();
+        }
     }
 
     public Usuario getCliente() {
