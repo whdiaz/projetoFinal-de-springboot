@@ -1,6 +1,8 @@
 package com.projeto.curosFinalizado.entidad;
 
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import javax.persistence.*;
 import java.io.Serializable;
 import java.util.ArrayList;
@@ -10,8 +12,10 @@ import java.util.Objects;
 
 
 @Entity
-public class Usuario  implements Serializable {
-    private static  final long seralVersionUID = 1L;
+public class Usuario implements Serializable {
+
+	private static final long serialVersionUID = 1L;
+
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -21,7 +25,7 @@ public class Usuario  implements Serializable {
     private String telefone;
     private String senha;
 
-
+    @JsonIgnore
     @OneToMany(mappedBy = "cliente")
     private List<Pedido> pedidos = new ArrayList<>();
 
@@ -30,6 +34,7 @@ public class Usuario  implements Serializable {
     }
 
     public Usuario(Long id, String nome, String email, String telefone, String senha) {
+        super();
         this.id = id;
         this.nome = nome;
         this.email = email;
@@ -99,4 +104,3 @@ public class Usuario  implements Serializable {
 
 
 }
-

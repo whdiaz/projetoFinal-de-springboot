@@ -1,5 +1,7 @@
 package com.projeto.curosFinalizado.entidad;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
+
 import javax.persistence.*;
 import java.io.Serializable;
 import java.time.Instant;
@@ -12,6 +14,9 @@ public class Pedido  implements Serializable{
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+
+    @JsonFormat(shape = JsonFormat.Shape.STRING,
+            pattern =  "yyyy-MM-dd'T'HH:mm:ss'Z' ", timezone = "GMT")
     private Instant moment;
 
     @ManyToOne
@@ -57,11 +62,12 @@ public class Pedido  implements Serializable{
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Pedido pedido = (Pedido) o;
-        return Objects.equals(id, pedido.id);
+        return id.equals(pedido.id);
     }
 
     @Override
     public int hashCode() {
         return Objects.hash(id);
     }
+
 }

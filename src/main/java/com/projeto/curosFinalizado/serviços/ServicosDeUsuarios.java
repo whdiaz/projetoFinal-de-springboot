@@ -3,7 +3,6 @@ package com.projeto.curosFinalizado.serviços;
 import com.projeto.curosFinalizado.entidad.Usuario;
 import com.projeto.curosFinalizado.repositorios.RepositorioDeUsuario;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
