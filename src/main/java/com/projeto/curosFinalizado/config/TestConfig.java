@@ -1,8 +1,10 @@
 package com.projeto.curosFinalizado.config;
 
+import com.projeto.curosFinalizado.entidad.Categoria;
 import com.projeto.curosFinalizado.entidad.Pedido;
 import com.projeto.curosFinalizado.entidad.Usuario;
 import com.projeto.curosFinalizado.entidad.enums.StatusDePedido;
+import com.projeto.curosFinalizado.repositorios.RepositorioDeCategoria;
 import com.projeto.curosFinalizado.repositorios.RepositorioDePedidos;
 import com.projeto.curosFinalizado.repositorios.RepositorioDeUsuario;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -23,9 +25,18 @@ public class TestConfig implements CommandLineRunner {
     @Autowired
     private RepositorioDePedidos repositorioDePedidos;
 
+    @Autowired
+    private RepositorioDeCategoria repositorioDeCategoria;
+
 
     @Override
     public void run(String... args) throws Exception {
+
+        Categoria cat1 = new Categoria(null, "electronica");
+        Categoria cat2 = new Categoria(null, "livros");
+        Categoria cat3 = new Categoria(null, "informatica");
+
+        repositorioDeCategoria.saveAll(Arrays.asList(cat1,cat2,cat3));
 
         Usuario u1 = new Usuario(null, "willian diaz",
                 "whdiazsdfws@gmail.com",
