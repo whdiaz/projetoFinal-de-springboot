@@ -2,10 +2,12 @@ package com.projeto.curosFinalizado.config;
 
 import com.projeto.curosFinalizado.entidad.Categoria;
 import com.projeto.curosFinalizado.entidad.Pedido;
+import com.projeto.curosFinalizado.entidad.Produto;
 import com.projeto.curosFinalizado.entidad.Usuario;
 import com.projeto.curosFinalizado.entidad.enums.StatusDePedido;
 import com.projeto.curosFinalizado.repositorios.RepositorioDeCategoria;
 import com.projeto.curosFinalizado.repositorios.RepositorioDePedidos;
+import com.projeto.curosFinalizado.repositorios.RepositorioDeProduto;
 import com.projeto.curosFinalizado.repositorios.RepositorioDeUsuario;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
@@ -28,6 +30,9 @@ public class TestConfig implements CommandLineRunner {
     @Autowired
     private RepositorioDeCategoria repositorioDeCategoria;
 
+    @Autowired
+    private RepositorioDeProduto repositorioDeProduto;
+
 
     @Override
     public void run(String... args) throws Exception {
@@ -36,7 +41,20 @@ public class TestConfig implements CommandLineRunner {
         Categoria cat2 = new Categoria(null, "livros");
         Categoria cat3 = new Categoria(null, "informatica");
 
+
+        Produto p1 = new Produto(null, "The Lord of the Rings", "Lorem ipsum dolor sit amet, consectetur.", 90.5, "");
+        Produto p2 = new Produto(null, "Smart TV", "Nulla eu imperdiet purus. Maecenas ante.", 2190.0, "");
+        Produto p3 = new Produto(null, "Macbook Pro", "Nam eleifend maximus tortor, at mollis.", 1250.0, "");
+        Produto p4 = new Produto(null, "PC Gamer", "Donec aliquet odio ac rhoncus cursus.", 1200.0, "");
+        Produto p5 = new Produto(null, "Rails for Dummies", "Cras fringilla convallis sem vel faucibus.", 100.99, "");
+
+
+
         repositorioDeCategoria.saveAll(Arrays.asList(cat1,cat2,cat3));
+        repositorioDeProduto.saveAll(Arrays.asList(p1,p2,p3,p4));
+
+
+
 
         Usuario u1 = new Usuario(null, "willian diaz",
                 "whdiazsdfws@gmail.com",
