@@ -83,5 +83,10 @@ public class TestConfig implements CommandLineRunner {
 
         repositorioDeItemDPedidos.saveAll(Arrays.asList(oi1, oi2,oi3,oi4));
 
+        Pagamento pag1 = new Pagamento(null,Instant.parse("2022-06-20T22:53:07Z"),o1 );
+        o1.setPagamento(pag1);
+
+        repositorioDePedidos.save(o1);
+
     }
 }
