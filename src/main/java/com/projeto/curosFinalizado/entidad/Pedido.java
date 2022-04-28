@@ -6,7 +6,9 @@ import com.projeto.curosFinalizado.entidad.enums.StatusDePedido;
 import javax.persistence.*;
 import java.io.Serializable;
 import java.time.Instant;
+import java.util.HashSet;
 import java.util.Objects;
+import java.util.Set;
 
 @Entity
 public class Pedido  implements Serializable{
@@ -25,6 +27,9 @@ public class Pedido  implements Serializable{
     @ManyToOne
     @JoinColumn(name = "cliente_id")
     private Usuario cliente;
+
+    @OneToMany(mappedBy = "id.pedido")
+    private Set<ItemDePedido>  items = new HashSet<>();
 
     public  Pedido(){
 
@@ -69,6 +74,10 @@ public class Pedido  implements Serializable{
 
     public void setCliente(Usuario cliente) {
         this.cliente = cliente;
+    }
+
+    public Set<ItemDePedido> getItems() {
+        return items;
     }
 
     @Override

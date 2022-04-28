@@ -1,14 +1,8 @@
 package com.projeto.curosFinalizado.config;
 
-import com.projeto.curosFinalizado.entidad.Categoria;
-import com.projeto.curosFinalizado.entidad.Pedido;
-import com.projeto.curosFinalizado.entidad.Produto;
-import com.projeto.curosFinalizado.entidad.Usuario;
+import com.projeto.curosFinalizado.entidad.*;
 import com.projeto.curosFinalizado.entidad.enums.StatusDePedido;
-import com.projeto.curosFinalizado.repositorios.RepositorioDeCategoria;
-import com.projeto.curosFinalizado.repositorios.RepositorioDePedidos;
-import com.projeto.curosFinalizado.repositorios.RepositorioDeProduto;
-import com.projeto.curosFinalizado.repositorios.RepositorioDeUsuario;
+import com.projeto.curosFinalizado.repositorios.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.context.annotation.Configuration;
@@ -32,6 +26,9 @@ public class TestConfig implements CommandLineRunner {
 
     @Autowired
     private RepositorioDeProduto repositorioDeProduto;
+
+    @Autowired
+    private RepositorioDeItemDPedidos repositorioDeItemDPedidos;
 
 
     @Override
@@ -78,5 +75,13 @@ public class TestConfig implements CommandLineRunner {
 
         repositorioDeUsuario.saveAll(Arrays.asList(u1,u2));
         repositorioDePedidos.saveAll(Arrays.asList(o1,o2,o3));
+
+        ItemDePedido oi1 = new ItemDePedido(o1, p1, 2, p1.getPreco());
+        ItemDePedido oi2 = new ItemDePedido(o1, p3, 1, p3.getPreco());
+        ItemDePedido oi3 = new ItemDePedido(o2, p3, 2, p3.getPreco());
+        ItemDePedido oi4 = new ItemDePedido(o3, p5, 2, p5.getPreco());
+
+        repositorioDeItemDPedidos.saveAll(Arrays.asList(oi1, oi2,oi3,oi4));
+
     }
 }

@@ -1,5 +1,6 @@
 package com.projeto.curosFinalizado.entidad;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.projeto.curosFinalizado.entidad.pk.ItemDePedidoPk;
 
 import javax.persistence.EmbeddedId;
@@ -14,7 +15,7 @@ public class ItemDePedido implements Serializable {
     private static  final long serialVersionUID = 1L;
 
     @EmbeddedId
-    private ItemDePedidoPk id;
+    private ItemDePedidoPk id = new ItemDePedidoPk();
 
     private Integer quantidade;
     private Double preco;
@@ -31,6 +32,7 @@ public class ItemDePedido implements Serializable {
         this.preco = preco;
     }
 
+    @JsonIgnore
     public Pedido getPedido(){
         return id.getPedido();
     }
