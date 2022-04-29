@@ -2,8 +2,11 @@ package com.projeto.curosFinalizado.serviços;
 
 import com.projeto.curosFinalizado.entidad.Usuario;
 import com.projeto.curosFinalizado.repositorios.RepositorioDeUsuario;
+import com.projeto.curosFinalizado.serviços.exceptions.DataBaseException;
 import com.projeto.curosFinalizado.serviços.exceptions.ResourceNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.dao.DataIntegrityViolationException;
+import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -28,7 +31,14 @@ public class ServicosDeUsuarios {
     }
 
     public void apagar(Long id){
-        repositorio.deleteById(id);
+        try {
+            repositorio.deleteById(id);
+        }catch (EmptyResultDataAccessException e){
+            throw new   ResourceNotFoundException(id);
+        }catch (DataIntegrityViolationException e){
+            throw  new DataBaseException(e.getMessage());
+
+        }
 
     }
     public Usuario atualizar(Long id, Usuario obj){
