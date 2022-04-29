@@ -2,6 +2,7 @@ package com.projeto.curosFinalizado.serviços;
 
 import com.projeto.curosFinalizado.entidad.Usuario;
 import com.projeto.curosFinalizado.repositorios.RepositorioDeUsuario;
+import com.projeto.curosFinalizado.serviços.exceptions.ResourceNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -19,7 +20,7 @@ public class ServicosDeUsuarios {
 
     public Usuario findbyID(long  id){
        Optional<Usuario> obj = repositorio.findById(id);
-       return obj.get();
+       return obj.orElseThrow(()-> new ResourceNotFoundException(id));
     }
 
     public Usuario inserir(Usuario obj){
