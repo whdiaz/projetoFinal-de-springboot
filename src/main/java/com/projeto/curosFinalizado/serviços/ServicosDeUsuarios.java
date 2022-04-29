@@ -30,5 +30,17 @@ public class ServicosDeUsuarios {
         repositorio.deleteById(id);
 
     }
+    public Usuario atualizar(Long id, Usuario obj){
+        Usuario entity = repositorio.getById(id);
+        atualizarData(entity, obj);
+        return repositorio.save(entity);
+    }
+
+    private void atualizarData(Usuario entity, Usuario obj) {
+        entity.setNome(obj.getNome());
+        entity.setEmail(obj.getEmail());
+        entity.setTelefone(obj.getTelefone());
+    }
+
 
 }
